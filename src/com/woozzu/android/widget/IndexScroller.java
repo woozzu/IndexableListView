@@ -116,11 +116,13 @@ public class IndexScroller {
 			}
 			break;
 		case MotionEvent.ACTION_MOVE:
-			// If this event moves inside index bar
-			if (contains(ev.getX(), ev.getX()) && mIsIndexing) {
-				// Determine which section the point is in, and move the list to that section
-				mCurrentSection = getSectionByPoint(ev.getY());
-				mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
+			if (mIsIndexing) {
+				// If this event moves inside index bar
+				if (contains(ev.getX(), ev.getX())) {
+					// Determine which section the point is in, and move the list to that section
+					mCurrentSection = getSectionByPoint(ev.getY());
+					mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
+				}
 				return true;
 			}
 			break;
@@ -149,7 +151,7 @@ public class IndexScroller {
 		if (mState == STATE_HIDDEN)
 			setState(STATE_SHOWING);
 		else if (mState == STATE_HIDING)
-			setState(STATE_SHOWN);
+			setState(STATE_HIDING);
 	}
 	
 	public void hide() {
