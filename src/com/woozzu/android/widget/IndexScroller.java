@@ -104,7 +104,7 @@ public class IndexScroller {
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			// If down event occurs inside index bar region, start indexing
-			if (mState != STATE_HIDDEN && contains(ev.getX(), ev.getX())) {
+			if (mState != STATE_HIDDEN && contains(ev.getX(), ev.getY())) {
 				setState(STATE_SHOWN);
 				
 				// It demonstrates that the motion event started from index bar
@@ -118,7 +118,7 @@ public class IndexScroller {
 		case MotionEvent.ACTION_MOVE:
 			if (mIsIndexing) {
 				// If this event moves inside index bar
-				if (contains(ev.getX(), ev.getX())) {
+				if (contains(ev.getX(), ev.getY())) {
 					// Determine which section the point is in, and move the list to that section
 					mCurrentSection = getSectionByPoint(ev.getY());
 					mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
