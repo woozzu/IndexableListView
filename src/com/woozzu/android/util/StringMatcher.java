@@ -69,6 +69,11 @@ public class StringMatcher {
 	}
 	
 	private static char getInitialSound(char c) {
+		
+		if(!isKorean(c)){
+			return c;
+		}
+		
 		return KOREAN_INITIAL[(c - KOREAN_UNICODE_START) / KOREAN_UNIT];
 	}
 }
